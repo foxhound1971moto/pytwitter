@@ -121,7 +121,6 @@ def getConfig (section, conf):
     return result
     
 def setConfig (section, key, value, conf):
-
     """
     設定ファイルの任意セクションへ値を設定する
     
@@ -252,6 +251,7 @@ def getTweet (params):
     except Exception as e:
         #エラー出力
         logger.warning(e)
+        print(e)
     
     return tweets
     
@@ -315,7 +315,7 @@ def updateElasticSearchbyTweets (tweets, params):
     except Exception as e:
         #エラー出力
         logger.warning(e)
-        
+        print(e)
     return 0
 
 # 処理開始

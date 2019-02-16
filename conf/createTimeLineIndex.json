@@ -20,15 +20,19 @@
     "docs": {
       "properties": {
         "tweet_id": {
-          "type": "text"
+          "type": "keyword"
         },
         "user_name": {
-          "type": "text",
-          "index": true
+          "type": "keyword"
         },
         "text": {
           "type": "text",
-          "index": true
+          "analyzer": "japanese",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
         },
         "favorite_count": {
           "type": "long"
@@ -37,15 +41,14 @@
           "type": "long"
         },
         "is_quote_status": {
-          "type": "text"
+          "type": "keyword"
         },
         "in_reply_to_screen_name": {
-          "type": "text"
+          "type": "keyword"
         },
         "created_at": {
           "type": "date",
-          "format" : "yyyy-MM-dd HH:mm:ss",
-          "index": true
+          "format" : "yyyy-MM-dd HH:mm:ss"
         }
       }
     }

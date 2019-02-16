@@ -31,8 +31,8 @@ def main():
     
     """
     
-    pwd_path = os.getcwd() # カレントパス取得
-    basename = __file__ # ファイル名
+    pwd_path = os.path.dirname(os.path.abspath(__file__)) #パス取得
+    basename = os.path.basename(__file__) # ファイル名
     filename , ext = os.path.splitext(basename) #ファイル名と拡張子を分離
     
     # Tweet取得スクリプトの設定ファイルから取ってくる
@@ -48,18 +48,17 @@ def main():
     # ロックファイル生成
     lock = zc.lockfile.LockFile(loc_path)
     
-    # ログレベル (デフォINFO, DEBUGフラグ有のみDEBUGレべル)
-    logging.basicConfig(level=logging.INFO)
-    if common_config.get("DEBUG") == 1:
-        logging.basicConfig(level=logging.DEBUG)
-
     # ロガー
     logger = logging.getLogger(filename)
-    
-    # ログのファイル出力先を設定
-    fh = logging.FileHandler(log_path)
-    logger.addHandler(fh)
-    
+
+    # ログファイルのフォーマット
+    fmt = "%(asctime)s %(levelname)s %(name)s :%(message)s"
+
+    # ログレベル (デフォINFO, DEBUGフラグ有のみDEBUGレべル)
+    logging.basicConfig(filename=log_path, level=logging.INFO, format=fmt)
+    if common_config.get("DEBUG") == 1:
+        logging.basicConfig(filename=log_path, level=logging.DEBUG, format=fmt)
+        
     # 各種設定値を格納
     params = {
         "conf_path": conf_path,
@@ -159,6 +158,7 @@ def createIndex (params):
     except Exception as e:
         #エラー出力
         logger.warning(e)
+        print(e)
     
     return 0
 
