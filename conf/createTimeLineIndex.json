@@ -1,0 +1,53 @@
+{
+  "settings":{
+     "index":{
+        "analysis":{
+           "tokenizer" : {
+               "kuromoji" : {
+                  "type" : "kuromoji_tokenizer"
+               }
+           },
+           "analyzer" : {
+               "japanese" : {
+                   "type" : "custom",
+                   "tokenizer" : "kuromoji"
+               }
+           }
+        }
+     }
+  },
+  "mappings": {
+    "docs": {
+      "properties": {
+        "tweet_id": {
+          "type": "text"
+        },
+        "user_name": {
+          "type": "text",
+          "index": true
+        },
+        "text": {
+          "type": "text",
+          "index": true
+        },
+        "favorite_count": {
+          "type": "long"
+        },
+        "retweet_count": {
+          "type": "long"
+        },
+        "is_quote_status": {
+          "type": "text"
+        },
+        "in_reply_to_screen_name": {
+          "type": "text"
+        },
+        "created_at": {
+          "type": "date",
+          "format" : "yyyy-MM-dd HH:mm:ss",
+          "index": true
+        }
+      }
+    }
+  }
+}
