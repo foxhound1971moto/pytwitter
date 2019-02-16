@@ -25,6 +25,9 @@
         "user_name": {
           "type": "keyword"
         },
+        "screen_name": {
+          "type": "keyword"
+        },
         "text": {
           "type": "text",
           "analyzer": "japanese",

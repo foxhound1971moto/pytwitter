@@ -230,6 +230,7 @@ def getTweet (params):
             tweet = {
                 "tweet_id":         result.id_str,
                 "user_name":        result.user.name,
+                "screen_name":      result.user.screen_name,
                 "text":             result.text, 
                 "favorite_count" :  str(result.favorite_count),
                 "retweet_count"  :  str(result.retweet_count),
