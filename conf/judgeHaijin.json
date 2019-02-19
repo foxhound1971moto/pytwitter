@@ -1,0 +1,30 @@
+{
+ "size": 0, 
+  "query": {
+    "bool":{
+      "must":[
+        {
+          "range": {
+            "created_at": {
+              "gte": "now-24h",
+              "lte": "now",
+              "time_zone": "+09:00"
+            }
+          }
+        },
+        {
+          "term": {
+              "is_quote_status": "False"
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+      "user_name_aggs":{
+        "terms":{
+          "field": "user_name"
+        }
+      }
+  }
+}

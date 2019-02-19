@@ -1,0 +1,5 @@
+MAILTO=""
+# updateESfromTimeLineを毎分で定期実行するcron例
+# /home/ec2-user/environment配下にpytwitterプロジェクトを配置した例
+
+*/1 * * * * ~/.pyenv/shims/python3.7 ~/environment/pytwitter/bin/updateESfromTimeLine.py
