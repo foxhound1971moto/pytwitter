@@ -206,6 +206,7 @@ def getTweet (params):
             max_id = int(last_max_id)
             results = api.home_timeline(since_id=last_max_id, count=max_count) #前回のID以降のタイムライン取得
         else:
+            logger.info("last_max_id has not found.")
             results = api.home_timeline(count=max_count) #タイムライン取得
             max_id = 0
         
@@ -306,7 +307,6 @@ def updateElasticSearchbyTweets (tweets, params):
             actions.append({
               "_index": index_name,
               "_type": type_name,
-              "_id": tweet.get("str_id"),
               "_source": tweet
             })
 
